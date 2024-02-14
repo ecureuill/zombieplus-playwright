@@ -5,3 +5,5 @@ playwright/.cache/
 core
 .env
 apps/
+.dockerfile
+.docker-compose
