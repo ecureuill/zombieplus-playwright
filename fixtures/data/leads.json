@@ -1,0 +1,78 @@
+{
+  "create_feature": {
+    "success": {
+      "email": "alicesmith@example.com",
+      "name": "Alice Smith"
+    },
+    "fail": {
+      "duplicated": {
+        "email": "bobjohnson@example.com",
+        "name": "Bob Johnson"
+      },
+      "empty_email": {
+        "email": "",
+        "name": "Charlie Davies"
+      },
+      "empty_name": {
+        "email": "empty_name@example.com",
+        "name": ""
+      },
+      "empty_form": {
+        "email": "",
+        "name": ""
+      },
+      "invalid": {
+        "email": "invalid@email",
+        "name": "Emily Wilson"
+      }
+    }
+  },
+  "delete_feature": {
+    "remove": "franklee",
+    "data": [
+      {
+        "email": "franklee@example.com",
+        "name": "Frank Lee"
+      },
+      {
+        "email": "gracemiller@example.com",
+        "name": "Grace Miller"
+      }
+    ]
+  },
+  "search_feature": {
+    "filter": {
+      "input": "do",
+      "outputs": [
+        "Nome:John Doo",
+        "Nome:Jane Doe"
+      ]
+    },
+    "no_records": {
+      "input": "NonExistentUser",
+      "outputs": []
+    },
+    "clear_filter": {
+      "input": "Bob",
+      "outputs": [
+        "Nome:Jane Doe",
+        "Nome:John Doo",
+        "Nome:Bob Who"
+      ]
+    },
+    "data": [
+      {
+        "email": "johndoo@example.com",
+        "name": "John Doo"
+      },
+      {
+        "email": "janedoe@example.com",
+        "name": "Jane Doe"
+      },
+      {
+        "email": "bob@who.com",
+        "name": "Bob Who"
+      }
+    ]
+  }
+}

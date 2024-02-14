@@ -1,0 +1,52 @@
+version: '3.8'
+
+networks:  
+  mynet:
+    external: true
+
+services:
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: dockerfile
+    image: zombieplus:api
+    expose:
+      - 3333
+    ports:
+      - 3333:3333
+    networks:
+      mynet:
+        ipv4_address: 172.18.0.13
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: dockerfile
+    image: zombieplus:web
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    networks:
+      mynet:
+        ipv4_address: 172.18.0.14
+    depends_on:
+      - api
+  test:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    networks:
+      mynet:
+        ipv4_address: 172.18.0.15
+    expose:
+      - 9323
+    ports:
+      - 9323:9323
+    volumes:
+      - ./tests:/app/tests
+      - ./fixtures:/app/fixtures
+      - ./playwright.config.ts:/app/playwright.config.ts
+      - ./playwright-reports:/app/playwright-reports
+    depends_on:
+      - api
+      - web

@@ -1,0 +1,162 @@
+{
+  "create_feature": {
+    "success": {
+      "featured": {
+        "title": "Orgulho e Preconceito e Zumbis",
+        "overview": "Elizabeth Bennet e Sr. Darcy unem forças para combater uma praga de zumbis que assola a Inglaterra.",
+        "company": "Universal Pictures",
+        "release_year": 2016,
+        "featured": true,
+        "cover": "/covers/movies/pride-prejudice-zombies.jpg"
+      },
+      "not_featured": {
+        "title": "Península",
+        "overview": "Exilado na Coreia do Sul devastada por zumbis, um soldado é enviado de volta para uma missão arriscada.",
+        "company": "Lionsgate Films",
+        "release_year": 2020,
+        "featured": false
+      }
+    },
+    "failure": {
+      "duplicate": {
+        "title": "Guerra Mundial Z",
+        "overview": "Um ex-investigador da ONU é chamado para investigar a propagação de um vírus mortal que transforma as vítimas em zumbis, ameaçando dizimar a população mundial.",
+        "company": "Paramount Pictures",
+        "release_year": 2013,
+        "featured": true,
+        "cover": "/covers/movies/wwz.png"
+      },
+      "required": {
+        "title": "",
+        "overview": "",
+        "company": "",
+        "release_year": "",
+        "featured": true,
+        "cover": "/covers/movies/mortos-vivos-2.jpg"
+      }
+    }
+  },
+  "delete_feature": {
+    "remove": "Crepúsculo Polar",
+    "data":[
+      {
+        "title": "Contágio Z",
+        "overview": "Uma mutação do resfriado comum gera zumbis rápidos e implacáveis.",
+        "company": "Fox Entertainment",
+        "release_year": 2024,
+        "featured": false,
+        "cover": "/covers/movies/contagio-z.jpg"
+      },
+      {
+        "title": "Crepúsculo Polar",
+        "overview": "Cientistas no Ártico enfrentam zumbis inteligentes e adaptados ao frio.",
+        "company": "Walt Disney Studio",
+        "release_year": 2025,
+        "featured": true,
+        "cover": "/covers/movies/crepusculo-polar.jpg"
+      }
+    ]
+  },
+  "search_feature": {
+    "filter": {
+      "input": "zumbi",
+      "outputs": [
+        "Zumbilândia",
+        "Zumbilândia: Mata-mata Duplo",
+        "Invasão Zumbi",
+        "Meu Namorado é um Zumbi"
+      ]
+    },
+    "no_records": {
+      "input": "alienígenas",
+      "outputs": []
+    },
+    "clear_filter": {
+      "input": "Ascensão das Máquinas",
+      "outputs": [
+        "Zumbilândia: Mata-mata Duplo",
+        "Invasão Zumbi",
+        "Ascensão das Máquinas",
+        "Zumbilândia",
+        "Meu Namorado é um Zumbi",
+        "A Noite dos Mortos-Vivos"
+      ]
+    },
+    "data": [
+      {
+        "title": "Zumbilândia: Mata-mata Duplo",
+        "overview": "Columbus, Tallahassee, Wichita e Little Rock retornam para enfrentar novos tipos de zumbis e os desafios da vida em comunidade.",
+        "company": "Sony Pictures",
+        "release_year": 2019,
+        "featured": true,
+        "cover": "/covers/movies/zumbilandia2.jpg"
+      },
+      {
+        "title": "Invasão Zumbi",
+        "overview": "Um trem de alta velocidade é tomado por zumbis, e os passageiros lutam para sobreviver.",
+        "company": "Amazon Studios",
+        "release_year": 2016,
+        "featured": false,
+        "cover": "/covers/movies/invasão.jpg"
+      },
+      {
+        "title": "Ascensão das Máquinas",
+        "overview": "A IA cria zumbis em uma revolução tecnológica.",
+        "company": "Columbia Pictures",
+        "release_year": 2026,
+        "featured": false,
+        "cover": "/covers/movies/ascensao-das-maquinas.jpg"
+      },
+      {
+        "title": "Zumbilândia",
+        "overview": "Um grupo improvável de sobreviventes navega por um mundo cheio de zumbis, tentando encontrar um lugar seguro.",
+        "company": "Netflix",
+        "release_year": 2009,
+        "featured": true,
+        "cover": "/covers/movies/zumbilandia.jpg"
+      },
+      {
+        "title": "Meu Namorado é um Zumbi",
+        "overview": "Em um mundo pós-apocalíptico, uma jovem se apaixona por um zumbi que ainda preserva algumas características humanas.",
+        "company": "Fox Entertainment",
+        "release_year": 2013,
+        "featured": false,
+        "cover": "/covers/movies/boyfriend.jpg"
+      },
+      {
+        "title": "A Noite dos Mortos-Vivos",
+        "overview": "Um grupo de pessoas fica preso em uma casa enquanto zumbis canibais famintos cercam o local.",
+        "company": "Universal Pictures",
+        "release_year": 1968,
+        "featured": false,
+        "cover": "/covers/movies/mortos-vivos.jpg"
+      }
+    ]
+  },
+  "featured_feature": [
+    {
+      "title": "My boyfriend is a Zombie",
+      "overview": "...",
+      "company": "Fox Entertainment",
+      "release_year": 2013,
+      "featured": true,
+      "cover": "/covers/movies/boyfriend.jpg"
+    },
+    {
+      "title": "Rise of Machines",
+      "overview": "A IA cria zumbis em uma revolução tecnológica.",
+      "company": "Columbia Pictures",
+      "release_year": 2026,
+      "featured": true,
+      "cover": "/covers/movies/ascensao-das-maquinas.jpg"
+    },
+    {
+      "title": "Pride, prejudice and zombies",
+      "overview": "Elizabeth Bennet e Sr. Darcy unem forças para combater uma praga de zumbis que assola a Inglaterra.",
+      "company": "Universal Pictures",
+      "release_year": 2016,
+      "featured": true,
+      "cover": "/covers/movies/pride-prejudice-zombies.jpg"
+    }
+  ]
+}

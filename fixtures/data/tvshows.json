@@ -1,0 +1,138 @@
+{
+  "create_feature": {
+    "success": {
+      "featured": {
+        "data": {
+          "title": "Bugs & Bites: A Luta Contra o Erro Mortal",
+          "overview": "Em um mundo infestado por zumbis, uma equipe de QA dedicada se torna a última linha de defesa contra um vírus tecnológico que transforma humanos em monstros digitais.",
+          "company": "Netflix",
+          "release_year": 2010,
+          "seasons": 4,
+          "featured": true,
+          "cover": "/covers/tvshows/bugs and bites.jpg"
+        },
+        "outputs": "Bugs & Bites: A Luta Contra o Erro Mortal4 Temporadas"
+      },
+      "not_featured": {
+        "data": {
+          "title": "Fear Factor: Code Red",
+          "overview": "Um reality show coloca em teste as habilidades de QAs em um ambiente pós-apocalíptico infestado por zumbis.",
+          "company": "Netflix",
+          "release_year": 2019,
+          "seasons": 3,
+          "featured": false,
+          "cover": "/covers/tvshows/fear factor.jpg"
+        },
+        "outputs": "Fear Factor: Code Red3 Temporadas"
+      }
+    },
+    "failure": {
+      "duplicate": {
+        "title": "QA Zumbi: A Saga de um Tester Infectado",
+        "overview": "Um QA é infectado por um vírus zumbi que o transforma em um ser híbrido, com habilidades aprimoradas para detectar bugs.",
+        "company": "Netflix",
+        "release_year": 2019,
+        "seasons": 3,
+        "featured": false,
+        "cover": "/covers/tvshows/qa zombie.jpg"
+      },
+      "required": {
+        "title": "",
+        "overview": "",
+        "company": "",
+        "release_year": "",
+        "seasons": "",
+        "featured": false
+      }
+    }
+  },
+  "delete_feature": {
+    "remove": "A Fazenda Zumbi4 Temporadas",
+    "data":[
+      {
+        "title": "A Fazenda Zumbi",
+        "overview": "Celebridades se juntam a um grupo de especialistas em sobrevivência em uma fazenda infestada por zumbis.",
+        "company": "Netflix",
+        "release_year": 2010,
+        "seasons": 4,
+        "featured": true
+      }
+    ] 
+  },
+  "search_feature": {
+    "filter": {
+      "input": "zumbi",
+      "outputs": [
+        "Zumbis na Nuvem: Testando o Apocalipse4 Temporadas",
+        "Zumbis ao Vivo1 Temporada"
+      ]
+    },
+    "no_records": {
+      "input": "aliens",
+      "outputs": []
+    },
+    "clear_filter": {
+      "input": "Código",
+      "outputs": [
+        "Zumbis na Nuvem: Testando o Apocalipse4 Temporadas",
+        "Código Morto: A Revolta dos Zombies QAs3 Temporadas",
+        "Zumbis ao Vivo1 Temporada"
+      ]
+    },
+    "data": [
+      {
+        "title": "Zumbis na Nuvem: Testando o Apocalipse",
+        "overview": "Uma equipe de QA é enviada para um data center virtual para testar um novo software de simulação de apocalipse zumbi",
+        "company": "Netflix",
+        "release_year": 2010,
+        "seasons": 4,
+        "featured": true
+      },
+      {
+        "title": "Código Morto: A Revolta dos Zombies QAs",
+        "overview": "Em um futuro distópico, QAs são obrigados a trabalhar em condições precárias, testando softwares de baixa qualidade que colocam a vida das pessoas em risco.",
+        "company": "Netflix",
+        "release_year": 2019,
+        "seasons": 3,
+        "featured": false
+      },
+      {
+        "title": "Zumbis ao Vivo",
+        "overview": "Um grupo de pessoas comuns é trancado em um estúdio com zumbis reais, enquanto o público vota em quem deve ser eliminado.",
+        "company": "Netflix",
+        "release_year": 2019,
+        "seasons": 1,
+        "featured": false
+      }
+    ]
+  }, 
+  "featured_feature": [
+    {
+      "title": "Bugs & Bites",
+      "overview": "Em um mundo infestado por zumbis, uma equipe de QA dedicada se torna a última linha de defesa contra um vírus tecnológico que transforma humanos em monstros digitais.",
+      "company": "Netflix",
+      "release_year": 2010,
+      "seasons": 4,
+      "featured": true,
+      "cover": "/covers/tvshows/bugs and bites.jpg"
+    },
+    {
+      "title": "QA Zumbi",
+      "overview": "Um QA é infectado por um vírus zumbi que o transforma em um ser híbrido, com habilidades aprimoradas para detectar bugs.",
+      "company": "Netflix",
+      "release_year": 2019,
+      "seasons": 3,
+      "featured": true,
+      "cover": "/covers/tvshows/qa zombie.jpg"
+    },
+    {
+      "title": "Fear Factor",
+      "overview": "Um reality show coloca em teste as habilidades de QAs em um ambiente pós-apocalíptico infestado por zumbis.",
+      "company": "Netflix",
+      "release_year": 2019,
+      "seasons": 3,
+      "featured": true,
+      "cover": "/covers/tvshows/fear factor.jpg"
+    }
+  ]
+}

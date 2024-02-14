@@ -1,0 +1,34 @@
+{
+  "success": {
+    "email": "admin@zombieplus.com",
+    "pwd": "pwd123",
+    "name": "Admin"
+  },
+  "fail": {
+   "empty_form": {
+      "email": "",
+      "pwd": "",
+      "name": "Admin"
+    },
+    "empty_email": {
+      "email": "",
+      "pwd": "1231",
+    "name": "Admin"
+    },
+    "empty_pwd": {
+      "email": "john@doo.com",
+      "pwd": "",
+      "name": "Admin"
+    },
+    "credential": {
+      "email": "admin@zombieplus.com",
+      "pwd": "3432",
+      "name": "Admin"
+    },
+    "invalid": {
+      "email": "admin@",
+      "pwd": "pwd123",
+      "name": "Admin"
+    }
+  }
+}
