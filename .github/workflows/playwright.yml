@@ -29,11 +29,11 @@ jobs:
         # Replace with your specific processing steps
         run: |
           # Example: Add headers to files in ./report
-          find ./report -type f -print0 | xargs -0 -I {} sh -c 'echo HEADLINE >> {}'
+          find ./playwright-report -type f -print0 | xargs -0 -I {} sh -c 'echo HEADLINE >> {}'
       - uses: actions/upload-artifact@v3
         with:
           name: directory-content
-          path: ./report/
+          path: ./playwright-report/
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v3
@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./report/
+          path: ./playwright-report/
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
