@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { Mutex } from 'async-mutex';
 import * as loginData from '../../fixtures/data/login.json';
 import * as moviesData from '../../fixtures/data/movies.json';
 import { Api } from '../../fixtures/utils/Api';
@@ -8,7 +7,6 @@ import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { MoviesPage } from '../pages/MoviesPage';
 import { MoviesRegisterPage } from '../pages/MoviesRegisterPage';
 
-const mutex = new Mutex();
 let moviesPage: MoviesPage;
 let moviesRegisterPage: MoviesRegisterPage;
 
@@ -24,17 +22,12 @@ test.describe('Movies tests suit', () => {
   test.describe('Search feature', () => {
     
     test.beforeAll (async ({request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies`);
+      await executeSQL(`DELETE FROM movies`);
         
-        const api = new Api(request);
-        await api.setToken();
-        for await (const movie of moviesData.search_feature.data){
-          await api.createMovie(movie);
-        }
-      } finally {
-        release();
+      const api = new Api(request);
+      await api.setToken();
+      for await (const movie of moviesData.search_feature.data){
+        await api.createMovie(movie);
       }
     })
 
@@ -68,17 +61,12 @@ test.describe('Movies tests suit', () => {
   });
 
   test('Open registration form', async ({request}) => {
-    const release = await mutex.acquire();
-    try {
-      const api = new Api(request);
+    const api = new Api(request);
       await api.setToken();
       for await (const movie of moviesData.search_feature.data){
         await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
         await api.createMovie(movie);
       }
-    } finally {
-      release();
-    }
     
     await moviesPage.goToRegisterForm();
     moviesRegisterPage = new MoviesRegisterPage(moviesPage.page);
@@ -99,12 +87,7 @@ test.describe('Movies tests suit', () => {
     test('Should add movie @smoke', async ({page}) => {
       const movie = moviesData.create_feature.success.not_featured;
       
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
-      } finally {
-        release();
-      }   
+      await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);   
       await moviesRegisterPage.fill(movie);
       await moviesRegisterPage.submit();
 
@@ -117,12 +100,7 @@ test.describe('Movies tests suit', () => {
     test('Should add movie as featured', async ({page}) => {
       const movie = moviesData.create_feature.success.featured;
       
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
-      } finally {
-        release();
-      }  
+      await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);  
 
       await moviesRegisterPage.fill(movie);
       await moviesRegisterPage.submit();
@@ -133,15 +111,10 @@ test.describe('Movies tests suit', () => {
     test('Should not add movie with duplicated title', async ({request}) => {
       const movie = moviesData.create_feature.failure.duplicate;
 
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
-        const api = new Api(request);
-        await api.setToken();
-        await api.createMovie(movie);  
-      } finally {
-        release();
-      }  
+      await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
+      const api = new Api(request);
+      await api.setToken();
+      await api.createMovie(movie);    
       
       await moviesRegisterPage.fill(movie);
       await moviesRegisterPage.submit();
@@ -152,12 +125,7 @@ test.describe('Movies tests suit', () => {
     test('Should not add movie with long title', async () => {
       const movie = moviesData.create_feature.failure.long_title;
 
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
-      } finally {
-        release();
-      }  
+      await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);  
       
       await moviesRegisterPage.fill(movie);
       await moviesRegisterPage.submit();
@@ -168,12 +136,7 @@ test.describe('Movies tests suit', () => {
     test('Should not add movie with long overview', async () => {
       const movie = moviesData.create_feature.failure.long_overview;
 
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);
-      } finally {
-        release();
-      }  
+      await executeSQL(`DELETE FROM movies WHERE title='${movie.title}'`);  
       
       await moviesRegisterPage.fill(movie);
       await moviesRegisterPage.submit();
@@ -194,18 +157,11 @@ test.describe('Movies tests suit', () => {
 
   test.describe('Delete movie feature @smoke', () => {
     test('Should remove a movie', async ({page, request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM movies`);
-        
-        const api = new Api(request);
-        await api.setToken();
-        for await (const movie of moviesData.delete_feature.data){
-          // await executeSQL(`DELETE FROM movies WHERE title='movie'`);
-          await api.createMovie(movie);
-        }
-      } finally {
-        release();
+      await executeSQL(`DELETE FROM movies`);
+      const api = new Api(request);
+      await api.setToken();
+      for await (const movie of moviesData.delete_feature.data){
+        await api.createMovie(movie);
       }
 
       await page.reload();
@@ -216,12 +172,7 @@ test.describe('Movies tests suit', () => {
   test.describe('Special characters validations', () => {
 
     test.beforeEach(async () => {
-        const release = await mutex.acquire();
-        try {
-          await executeSQL(`DELETE FROM movies`);
-        } finally {
-          release();
-        }    
+        await executeSQL(`DELETE FROM movies`);    
     });
     
     moviesData.create_feature.success.special_character.forEach(movie => {
@@ -241,14 +192,9 @@ test.describe('Movies tests suit', () => {
       
     moviesData.create_feature.success.special_character.forEach(movie => {
       test(`Should filter movie with special character title ${movie.title}`, async ({request}) => {
-        const release = await mutex.acquire();
-        try {
-          const api = new Api(request);
-          await api.setToken();
-          await api.createMovie(movie);
-        } finally {
-          release();
-        }  
+        const api = new Api(request);
+        await api.setToken();
+        await api.createMovie(movie);  
           
         await moviesPage.searchMovie(movie.title);
         await moviesPage.listOfMoviesContainsOnly([movie.title]);
@@ -257,15 +203,10 @@ test.describe('Movies tests suit', () => {
 
     moviesData.delete_feature.special_character.forEach(movie => {
       test(`Should remove movie with special character in title ${movie.title}`, async ({request}) => {
-        const release = await mutex.acquire();
-        try {
-          const api = new Api(request);
-          await api.setToken();
-          await api.createMovie(movie);
-        } finally {
-          release();
-        }
-        await moviesPage.page.reload();
+        const api = new Api(request);
+        await api.setToken();
+        await api.createMovie(movie);
+      await moviesPage.page.reload();
         await moviesPage.deleteMovie(movie.title);
       })
     });

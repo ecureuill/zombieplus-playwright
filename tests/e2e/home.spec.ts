@@ -1,5 +1,4 @@
-import { expect, test } from '@playwright/test';
-import { Mutex } from 'async-mutex';
+import { test } from '@playwright/test';
 import * as leadsData from '../../fixtures/data/leads.json';
 import * as moviesData from '../../fixtures/data/movies.json';
 import * as tvshowsData from '../../fixtures/data/tvshows.json';
@@ -7,7 +6,6 @@ import { Api } from '../../fixtures/utils/Api';
 import { executeSQL } from '../../fixtures/utils/db';
 import { HomePage } from '../pages/HomePage';
 
-const mutex = new Mutex();
 let homePage: HomePage;
 
 test.describe('Home page suit tests', () => {
@@ -20,13 +18,7 @@ test.describe('Home page suit tests', () => {
   test.describe('Lead registration feature', () => {
   
     test.beforeEach(async () => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM leads');
-      }
-      finally{
-        release();
-      }
+      await executeSQL('DELETE FROM leads');
       await homePage.openLeadModal()
     })
     
@@ -67,8 +59,6 @@ test.describe('Home page suit tests', () => {
 
   test.describe('Featured movies and series feature', () => {
     test('Should feature featured movies and tvshows', async ({request}) => {
-      const release = await mutex.acquire();
-      try {
         await executeSQL('DELETE FROM movies');
         await executeSQL('DELETE FROM tvshows');
 
@@ -80,9 +70,6 @@ test.describe('Home page suit tests', () => {
         for await (const tvshows of tvshowsData.featured_feature){
           await api.createTvShow(tvshows);
         }
-      } finally {
-        release();
-      }
       
       await homePage.page.reload();
       await homePage.page.waitForLoadState('networkidle');

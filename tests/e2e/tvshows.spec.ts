@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { Mutex } from 'async-mutex';
 import * as loginData from '../../fixtures/data/login.json';
 import * as tvshowsData from '../../fixtures/data/tvshows.json';
 import { Api } from '../../fixtures/utils/Api';
@@ -8,7 +7,6 @@ import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { TvShowsPage } from '../pages/TvShowsPage';
 import { TvShowsRegisterPage } from '../pages/TvShowsRegisterPage';
 
-const mutex = new Mutex();
 let tvshowsPage: TvShowsPage;
 let tvshowsRegisterPage: TvShowsRegisterPage;
 
@@ -24,16 +22,11 @@ test.describe('TvShows tests suit', () => {
   test.describe('Search feature', () => {
 
     test.beforeAll(async ({ request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM tvshows');
-        const api = new Api(request);
-        await api.setToken();
-        for await (const tvshow of tvshowsData.search_feature.data){
-          await api.createTvShow(tvshow);
-        }
-      } finally {
-        release();
+      await executeSQL('DELETE FROM tvshows');
+      const api = new Api(request);
+      await api.setToken();
+      for await (const tvshow of tvshowsData.search_feature.data){
+        await api.createTvShow(tvshow);
       }
     })
 
@@ -83,12 +76,7 @@ test.describe('TvShows tests suit', () => {
     test('Should add tvshows @smoke', async ({page}) => {
       const tvshows = tvshowsData.create_feature.success.not_featured;
       
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
-      } finally {
-        release();
-      }   
+      await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
       await tvshowsRegisterPage.fill(tvshows.data);
       await tvshowsRegisterPage.submit();
 
@@ -102,12 +90,7 @@ test.describe('TvShows tests suit', () => {
     test('Should add tvshows as featured', async ({page}) => {
       const tvshows = tvshowsData.create_feature.success.featured;
       
-      const release = await mutex.acquire();
-      try {
-        await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
-      } finally {
-        release();
-      }   
+      await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
       
       await tvshowsRegisterPage.fill(tvshows.data);
       await tvshowsRegisterPage.submit();
@@ -122,14 +105,9 @@ test.describe('TvShows tests suit', () => {
     test('Should not add tvshows with duplicated title', async ({page, request}) => {
       const tvshows = tvshowsData.create_feature.failure.duplicate;
       
-      const release = await mutex.acquire();
-      try {
-        const api = new Api(request);
-        await api.setToken();
-        await api.createTvShow(tvshows);  
-      } finally {
-        release();
-      }   
+      const api = new Api(request);
+      await api.setToken();
+      await api.createTvShow(tvshows);  
   
       await tvshowsRegisterPage.fill(tvshows);
       await tvshowsRegisterPage.submit();
@@ -153,16 +131,11 @@ test.describe('TvShows tests suit', () => {
   test.describe('Delete tvshow feature @smoke', () => {
     
     test('Should remove a tvshow', async ({page, request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM tvshows');
-        const api = new Api(request);
-        await api.setToken();
-        for await (const tvshow of tvshowsData.delete_feature.data){
-          await api.createTvShow(tvshow);
-        }
-      } finally {
-        release();
+      await executeSQL('DELETE FROM tvshows');
+      const api = new Api(request);
+      await api.setToken();
+      for await (const tvshow of tvshowsData.delete_feature.data){
+        await api.createTvShow(tvshow);
       }
 
       await page.reload();

@@ -18,7 +18,6 @@ It is the result of the Playwright Zombie Edition course held at [QaXperience](h
 - [Project Structure:](#project-structure)
 - [Page Objects and Componentization:](#page-objects-and-componentization)
 - [API Requests and Database Queries:](#api-requests-and-database-queries)
-- [Mutex:](#mutex)
 - [Test Data:](#test-data)
   - [Creating and Maintaining Test Data](#creating-and-maintaining-test-data)
   - [AI-Assisted Test Data Generation](#ai-assisted-test-data-generation)
@@ -130,14 +129,12 @@ These tests help ensure that the application can handle a wide range of input da
 - **Playwright**: A versatile library tailored for browser automation with a focus on reliability.
 - **TypeScript**: A statically typed superset of JavaScript, enhancing code safety and maintainability.
 - **PostgreSQL**: A widely used relational database management system for data storage and retrieval.
-- **async-mutex**: Library for asynchronous mutual exclusion, ensuring synchronized access to shared resources like the database.
 
 Each technology plays a crucial role in the project:
 
 - **Playwright** facilitates efficient and reliable automation of web application interactions.
 - **TypeScript** enforces type safety and improves code readability, reducing potential errors.
 - **PostgreSQL** provides a robust and scalable data storage solution for the test environment.
-- **async-mutex** guarantees controlled access to the database, preventing race conditions and data conflicts.
 
 ## Project Structure
 The project adopts a structured approach to maintainability and scalability. Here's an overview of the project's directory structure:
@@ -198,9 +195,6 @@ In addition, this project makes extensive use of components, which are classes t
 The database state is cleaned to ensure a consistent testing environment before each test. This is done using the `pg` package to interact directly with the PostgreSQL database.
 
 In addition, some tests insert records into the database using the ZombiePlus API. This allows the tests to run quickly, without the need to interact with the user interface.
-
-## Mutex
-A mutex (or mutual exclusion) is used in this project to ensure that only one test can interact with the database at a time. This is necessary to avoid race conditions if multiple tests try to change the database at the same time.
 
 ## Test Data
 

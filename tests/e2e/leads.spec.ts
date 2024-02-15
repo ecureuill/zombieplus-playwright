@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { Mutex } from 'async-mutex';
 import * as leads from '../../fixtures/data/leads.json';
 import * as data from '../../fixtures/data/login.json';
 import { Api } from '../../fixtures/utils/Api';
@@ -8,7 +7,6 @@ import { AdminLoginPage } from '../pages/AdminLoginPage';
 import { LeadsPage } from '../pages/LeadsPage';
 
 let leadsPage: LeadsPage;
-const mutex = new Mutex();
 
 test.describe('Leads tests suit', () => {
 
@@ -23,17 +21,12 @@ test.describe('Leads tests suit', () => {
   test.describe('Search feature', () => {
     
     test.beforeAll(async ({request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM leads');
+      await executeSQL('DELETE FROM leads');
 
-        const api = new Api(request);
-        await api.setToken();
-        for await (const lead of leads.search_feature.data){
-          await api.createLead(lead);
-        }
-      } finally {
-        release();
+      const api = new Api(request);
+      await api.setToken();
+      for await (const lead of leads.search_feature.data){
+        await api.createLead(lead);
       }
     })
 
@@ -67,17 +60,12 @@ test.describe('Leads tests suit', () => {
   });
 
   test.describe('Delete lead feature @smoke', () => {
-    test('Should remove a lead', async ({page, request}) => {
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM leads');
-        const api = new Api(request);
-        await api.setToken();
-        for await (const lead of leads.delete_feature.data){
-          await api.createLead(lead);
-        }
-      } finally {
-        release();
+  test('Should remove a lead', async ({page, request}) => {
+      await executeSQL('DELETE FROM leads');
+      const api = new Api(request);
+      await api.setToken();
+      for await (const lead of leads.delete_feature.data){
+        await api.createLead(lead);
       }
       await leadsPage.page.reload();
       await leadsPage.page.waitForLoadState('networkidle')
