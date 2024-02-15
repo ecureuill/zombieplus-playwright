@@ -10,7 +10,7 @@ import { LeadsPage } from '../pages/LeadsPage';
 let leadsPage: LeadsPage;
 const mutex = new Mutex();
 
-test.describe.serial('Leads tests suit', () => {
+test.describe('Leads tests suit', () => {
 
   test.beforeEach(async ({page}) => {
     const adminPage = new AdminLoginPage(page);

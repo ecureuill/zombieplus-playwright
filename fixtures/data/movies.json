@@ -15,7 +15,65 @@
         "company": "Lionsgate Films",
         "release_year": 2020,
         "featured": false
-      }
+      },
+      "special_character": [
+        {
+          "title": "Test Movie 🧟",
+          "overview": "Este é um filme com um título contendo um emoji de zumbi.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie Æ Ð Þ ñ ô",
+          "overview": "Este é um filme com um título contendo caracteres ASCII estendidos.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie with tab \\t",
+          "overview": "This movie title contains a tab character.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie with non-breaking space ",
+          "overview": "This movie title contains a non-breaking space character.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie with right-to-left mark \\u200F",
+          "overview": "This movie title contains a right-to-left mark.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie with SQL special character '",
+          "overview": "This movie title contains a SQL special character.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "Test Movie with HTML escape character <",
+          "overview": "This movie title contains a HTML escape character.",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        },
+        {
+          "title": "テスト映画",
+          "overview": "この映画のタイトルには日本語の文字が含まれています。",
+          "company": "Netflix",
+          "release_year": 2022,
+          "featured": true
+        }
+      ]
     },
     "failure": {
       "duplicate": {
@@ -33,6 +91,35 @@
         "release_year": "",
         "featured": true,
         "cover": "/covers/movies/mortos-vivos-2.jpg"
+      },
+      "long_title": {
+        "title": "A Incrível e Extraordinária Aventura do Zumbi Vegetariano chamado Bob que só Come Couve e Brócolis e Odeia Carne Humana e Faz Amizade com um Coelho Falante chamado Peter e Juntos Eles Salvam o Mundo de um Apocalipse Zumbi Horrível e Terrível causado por um Vírus Misterioso e no Final Ele Consegue Encontrar um Restaurante Vegano chamado 'O Paraíso Verde' com Opções Sem Glúten e Sem Lactose e Lá Ele Finalmente Pode Comer em Paz e Tranquilidade.",
+        "overview": "Este filme é sobre um título de filme extremamente longo.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      }, 
+      "long_overview": {
+        "title": "Long overview Movie",
+        "overview": "Este é um resumo de filme extremamente longo que excede o limite de caracteres normalmente permitido para resumos de filmes para testar como o sistema lida com resumos longos. Este filme é sobre um personagem que embarca em uma jornada épica para salvar o mundo. Ao longo do caminho, ele encontra muitos desafios e obstáculos, mas nunca perde a esperança. Ele faz amizade com muitos personagens coloridos e aprende muitas lições valiosas. No final, ele consegue derrotar o vilão e salvar o dia, provando que o bem sempre triunfa sobre o mal. Este filme é uma celebração do espírito humano e uma lembrança de que todos nós temos a capacidade de fazer a diferença no mundo. É uma história de amor, amizade, coragem e resiliência que irá inspirar e emocionar o público de todas as idades.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      "invalid_cover": {
+        "title": "Um filme com imagem invalida",
+        "overview": "Este filme é sobre uma imagem invalida.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true,
+        "cover":"/covers/movies/not-a-cover.jpg"
+      },
+      "sql_injection_title": {
+        "title": "Test Movie ; DROP TABLE movies --",
+        "overview": "Este filme é uma tentativa de teste de injeção SQL.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
       }
     }
   },
@@ -54,6 +141,65 @@
         "release_year": 2025,
         "featured": true,
         "cover": "/covers/movies/crepusculo-polar.jpg"
+      }
+    ],
+    "special_character": 
+    [
+      {
+        "title": "Movie 🚀",
+        "overview": "Este é um filme com um título contendo um emoji de foguete.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie œ Š Ž š ž Ÿ",
+        "overview": "Este é um filme com um título contendo caracteres ASCII estendidos.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with carriage return \\r",
+        "overview": "This movie title contains a carriage return character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with zero-width space​",
+        "overview": "This movie title contains a zero-width space character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with zero-width non-joiner \\u200C",
+        "overview": "This movie title contains a zero-width non-joiner.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with SQL special character --",
+        "overview": "This movie title contains a SQL special character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with HTML escape character &",
+        "overview": "This movie title contains a HTML escape character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Русский фильм",
+        "overview": "Это русский фильм с заголовком, содержащим кириллицу.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
       }
     ]
   },
@@ -130,6 +276,64 @@
         "release_year": 1968,
         "featured": false,
         "cover": "/covers/movies/mortos-vivos.jpg"
+      }
+    ],
+    "special_character": [
+      {
+        "title": "Movie 🧠",
+        "overview": "Este é um filme com um título contendo um emoji de cérebro.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie ß € µ ç õ",
+        "overview": "Este é um filme com um título contendo caracteres ASCII estendidos.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with tab \\t",
+        "overview": "This movie title contains a tab character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with thin space ",
+        "overview": "This movie title contains a thin space character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with left-to-right mark \\u200E",
+        "overview": "This movie title contains a left-to-right mark.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with SQL special character ;",
+        "overview": "This movie title contains a SQL special character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "Movie with HTML escape character >",
+        "overview": "This movie title contains a HTML escape character.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
+      },
+      {
+        "title": "فيلم عربي",
+        "overview": "هذا فيلم بعنوان يحتوي على أحرف عربية.",
+        "company": "Netflix",
+        "release_year": 2022,
+        "featured": true
       }
     ]
   },

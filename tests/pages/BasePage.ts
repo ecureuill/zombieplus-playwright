@@ -22,6 +22,6 @@ export abstract class BasePage {
 
   go = async () => {
     await this.page.goto(this.url);
-    await this.page.waitForLoadState();
+    await this.page.waitForLoadState('networkidle');
   }
 }

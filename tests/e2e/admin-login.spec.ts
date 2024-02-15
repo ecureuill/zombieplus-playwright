@@ -7,15 +7,15 @@ import { MoviesPage } from "../pages/MoviesPage";
 let adminPage: AdminLoginPage;
 let homePage: HomePage;
 
-test.beforeEach(async ({page}) => {
-  homePage = new HomePage(page);
-  await homePage.goToAdmin();
-
-  adminPage = new AdminLoginPage(page);
-  await adminPage.init();
-})
-
 test.describe('Admin login test suit', () => {
+  
+  test.beforeEach(async ({page}) => {
+    homePage = new HomePage(page);
+    await homePage.goToAdmin();
+  
+    adminPage = new AdminLoginPage(page);
+    await adminPage.init();
+  })
   test('Should sign in @smoke', async () => {
     await adminPage.submit(data.success);
     const moviesPage = new MoviesPage(adminPage.page);

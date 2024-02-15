@@ -16,6 +16,7 @@ test.describe('Home page suit tests', () => {
     homePage = new HomePage(page)
     await homePage.go();
   })
+  
   test.describe('Lead registration feature', () => {
   
     test.beforeEach(async () => {

@@ -1,18 +1,18 @@
 import { test } from '@playwright/test';
 import { Mutex } from 'async-mutex';
-import { TvShowsPage } from '../pages/TvShowsPage';
-import { AdminLoginPage } from '../pages/AdminLoginPage';
 import * as loginData from '../../fixtures/data/login.json';
 import * as tvshowsData from '../../fixtures/data/tvshows.json';
 import { Api } from '../../fixtures/utils/Api';
 import { executeSQL } from '../../fixtures/utils/db';
+import { AdminLoginPage } from '../pages/AdminLoginPage';
+import { TvShowsPage } from '../pages/TvShowsPage';
 import { TvShowsRegisterPage } from '../pages/TvShowsRegisterPage';
 
 const mutex = new Mutex();
 let tvshowsPage: TvShowsPage;
 let tvshowsRegisterPage: TvShowsRegisterPage;
 
-test.describe.serial('TvShows tests suit', () => {
+test.describe('TvShows tests suit', () => {
   test.beforeEach(async ({page}) => {  
     const adminPage = new AdminLoginPage(page);
     await adminPage.do(loginData.success);
@@ -23,7 +23,7 @@ test.describe.serial('TvShows tests suit', () => {
 
   test.describe('Search feature', () => {
 
-    test.beforeEach(async ({page, request}) => {
+    test.beforeAll(async ({ request}) => {
       const release = await mutex.acquire();
       try {
         await executeSQL('DELETE FROM tvshows');
@@ -35,26 +35,29 @@ test.describe.serial('TvShows tests suit', () => {
       } finally {
         release();
       }
-      await page.reload();
     })
 
-    test('Should enable clear button', async ({page, request}) => {
+    test.beforeEach(async () => {
+      await tvshowsPage.page.reload();
+      await tvshowsPage.page.waitForLoadState('networkidle');
+    })
+
+    test('Should enable clear button', async () => {
       await tvshowsPage.searchTvShow(tvshowsData.search_feature.filter.input);
       await tvshowsPage.isClearButtonVisible();
     });
     
-    test('Should filter tvshows @smoke', async ({page, request}) => {
+    test('Should filter tvshows @smoke', async () => {
       await tvshowsPage.searchTvShow(tvshowsData.search_feature.filter.input);
 
       await tvshowsPage.listOfTvShowsContainsOnly(tvshowsData.search_feature.filter.outputs);
     });
 
-    test('Should not retrieve tvshows', async ({page, request}) => {
+    test('Should not retrieve tvshows', async () => {
       await tvshowsPage.searchTvShow(tvshowsData.search_feature.no_records.input);
 
       await tvshowsPage.listOfTvShowsContainsOnly(tvshowsData.search_feature.no_records.outputs)
     });
-
 
     test('Should clear search bar and show complete list', async ({page, request}) => {
       await tvshowsPage.searchTvShow(tvshowsData.search_feature.clear_filter.input);
@@ -69,21 +72,23 @@ test.describe.serial('TvShows tests suit', () => {
     const tvshowsRegisterPage = new TvShowsRegisterPage(page);
     await tvshowsRegisterPage.isOpened();
   });
+
   test.describe('Create tvshows feature', () =>{
     
     test.beforeEach(async ({page}) => { 
-      const release = await mutex.acquire();
-      try {
-        await executeSQL('DELETE FROM tvshows');
-      } finally {
-        release();
-      }   
       tvshowsRegisterPage = new TvShowsRegisterPage(page);
       await tvshowsRegisterPage.go();
     })
     
     test('Should add tvshows @smoke', async ({page}) => {
       const tvshows = tvshowsData.create_feature.success.not_featured;
+      
+      const release = await mutex.acquire();
+      try {
+        await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
+      } finally {
+        release();
+      }   
       await tvshowsRegisterPage.fill(tvshows.data);
       await tvshowsRegisterPage.submit();
 
@@ -96,6 +101,14 @@ test.describe.serial('TvShows tests suit', () => {
 
     test('Should add tvshows as featured', async ({page}) => {
       const tvshows = tvshowsData.create_feature.success.featured;
+      
+      const release = await mutex.acquire();
+      try {
+        await executeSQL(`DELETE FROM tvshows WHERE title='${tvshows.data.title}'`);
+      } finally {
+        release();
+      }   
+      
       await tvshowsRegisterPage.fill(tvshows.data);
       await tvshowsRegisterPage.submit();
 
@@ -108,11 +121,16 @@ test.describe.serial('TvShows tests suit', () => {
 
     test('Should not add tvshows with duplicated title', async ({page, request}) => {
       const tvshows = tvshowsData.create_feature.failure.duplicate;
-
-      const api = new Api(request);
-      await api.setToken();
-      await api.createTvShow(tvshows);
       
+      const release = await mutex.acquire();
+      try {
+        const api = new Api(request);
+        await api.setToken();
+        await api.createTvShow(tvshows);  
+      } finally {
+        release();
+      }   
+  
       await tvshowsRegisterPage.fill(tvshows);
       await tvshowsRegisterPage.submit();
 

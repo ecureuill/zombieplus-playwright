@@ -12,7 +12,7 @@ export class TableComponent {
   }
 
   private getColumnClassLocator = (title:string) => {
-    const regex = new RegExp(`^${title}$`);
+    const regex = new RegExp(`^${title.replace('\\','\\\\')}$`);
     return this.tableLocator.locator(this.keyLocator, { hasText: regex });
   }
 

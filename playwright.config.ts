@@ -23,7 +23,7 @@ export default defineConfig({
        },
     },
     {
-      name: 'e2e featured tests',
+      name: 'e2e home page tests',
       testMatch: [
         '**/e2e/home.spec.ts',
       ],

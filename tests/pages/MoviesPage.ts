@@ -47,7 +47,7 @@ export class MoviesPage extends BasePage {
 
   isRegisterConfirmationModalOpened = async (title:string) => {
     this.modalComponent = new ModalComponent(this.page);
-    await this.modalComponent.isOpened('Ótima notícia!', new RegExp(`filme '${title}' foi adicionado`));
+    await this.modalComponent.isOpened('Ótima notícia!', new RegExp(`filme '${title.replace('\\', '\\\\')}' foi adicionado`));
   }
 
   isDuplicatedRegisterModalOpened = async (title:string) => {
