@@ -27,9 +27,19 @@ It is the result of the Playwright Zombie Edition course held at [QaXperience](h
 - [Feedback and Questions](#feedback-and-questions)
 
 ## Test Reports
-Test reports for this project are available on the GitHub page of the project at the following link: https://github.com/ecureuill/zombieplus-playwright. 
+Comprehensive test reports are available on the [project's GitHub Page](https://github.com/ecureuill/zombieplus-playwright). 
 
-These reports provide detailed information about the results of each test, including any errors or failures that occurred during testing.
+These reports offer in-depth insights into the execution of each test, including any errors or failures that ocurred during testing. Additionally, they include: 
+
+- **Screenshots for all test cases**: This ensures transparency and traceability, even for tests that pass successfully. You can easily visualize the expected behavior and confirm that the system is functioning as intended.
+- **Video recordings for failed tests**: These videos provide valuable insights into the exact nature of the failures, allowing for quicker and more accurate debugging. You can see the steps leading up to the failure and identify the root cause more efficiently.
+
+Advantages of these evidence types:
+- **Increased transparency and traceability**: Screenshots provide a clear visual representation of the test execution, regardless of the outcome. This helps stakeholders understand the testing process and identify any potential issues, even if the tests pass.
+- **Enhanced debugging efficiency**: Videos of failed tests offer a dynamic view of the problem, making it easier to pinpoint the exact cause of the failure. This can significantly reduce debugging time and effort.
+- **Improved communication and collaboration**: Both screenshots and videos can be easily shared with developers, testers, and other stakeholders, facilitating communication and collaboration in resolving issues.
+- **Documentation and reference**: These evidence types serve as valuable documentation for future reference and regression testing. You can easily verify the expected behavior and identify any regressions that may occur in later versions.
+
 
 ### Known Bugs
 The following bugs were identified during testing and are being tracked in the project's issue tracker:

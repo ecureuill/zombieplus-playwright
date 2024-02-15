@@ -11,6 +11,14 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     trace: 'on',
+    screenshot: {
+      mode: 'on',
+      fullPage: true,
+    },
+    video:  {
+      mode: 'retain-on-failure',
+    },
+    
   },
   projects: [
     {

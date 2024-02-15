@@ -33,6 +33,7 @@ export class HomePage extends BasePage {
 
   hasFeatured = async (count: number) => {
     const featuredContainer = this.page.getByRole('heading', { name:'Destaques', exact: true}).locator(".."); 
+    await featuredContainer.scrollIntoViewIfNeeded();
     await expect((await featuredContainer.getByRole('img').all()).length).toBe(count);
   }
 
