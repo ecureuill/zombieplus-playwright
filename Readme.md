@@ -58,11 +58,13 @@ The following bugs were identified during testing and are being tracked in the p
 ## Playwright Project Configuration
 In a Playwright test suite, project configuration is done using the `playwright.config.js` file. This file contains settings that affect how the tests are run and how the results are reported.
 
-In this project, we have two separate projects defined within our Playwright configuration: `e2e tests` and `e2e home page tests`.
+### Running in Sequence for Database Integrity
 
-The reason for having separate projects is due to the fact that the tests in the home page alter the state of the database tables (movies, tvshows, and leads). To avoid any potential conflicts or race conditions, these tests are run separately from the rest of the tests. The `fullyParallel` property is set to `false` to ensure that the projects are run sequentially, not in parallel.
+Within this configuration, we've established two distinct projects: "e2e tests" and "e2e home page tests." These projects run sequentially (`fullyParallel: false`) to prevent potential conflicts and race conditions. his prioritizes data integrity by preventing potential conflicts or race conditions that could arise if both projects interacted with the database (movies, tvshows, and leads) simultaneously.
 
-This configuration ensures that our tests are run in a controlled and predictable manner, minimizing the risk of unexpected behavior due to concurrent database modifications.
+### Standardized Viewport for Reliable Testing:
+
+Furthermore, we establish a consistent testing environment by setting the viewport to a minimum width of 1440 pixels and a minimum height of 900 pixels. This aligns with developer recommendations and reflects our anticipated user base. This standardized resolution ensures tests run under identical visual conditions across various devices and screen sizes, eliminating discrepancies and guaranteeing reliable test results.
 
 ## Testing Coverage
 This project aims to achieve comprehensive testing coverage for the ZombiePlus application.
