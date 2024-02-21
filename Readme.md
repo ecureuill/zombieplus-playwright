@@ -6,6 +6,7 @@
 This project is an automated test suite for ZombiePlus, a zombie-themed movie and series streaming service. The tests are written using Playwright, an end-to-end testing framework for web applications.
 It is the result of the Playwright Zombie Edition course held at [QaXperience](https://qaxperience.com).
 
+* Check my Robot project [here](https://github.com/ecureuill/zombieplus-robot/)
 ## Table of Contents
 
 - [Test Reports](#test-reports)
