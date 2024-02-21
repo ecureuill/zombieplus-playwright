@@ -18,18 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-      - name: Install dependencies (if needed)
-        run: |
-          npm install # or yarn install
-      - name: Process directory contents
-        # Replace with your specific processing steps
-        run: |
-          # Example: Add headers to files in ./report
-          find ./playwright-report -type f -print0 | xargs -0 -I {} sh -c 'echo HEADLINE >> {}'
+      
       - uses: actions/upload-artifact@v3
         with:
           name: directory-content
